@@ -1,4 +1,3 @@
-
 (ns eulerclj.p025
   (:use eulerclj.euler))
 

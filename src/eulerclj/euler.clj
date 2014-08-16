@@ -77,26 +77,10 @@
         (recur (dec cnt) (* acc cnt))))))
 
 
-; Add all the natural numbers below one thousand that are multiples of 3 or 5.
-; true o false se il numero e' divisibile per 3 o 5
-(defn divisible-by-3-or-5? [n]
-  (or 
-   (== (mod n 3) 0) 
-   (== (mod n 5) 0)))
 
 
-; ============================ PROBLEMA 001 ============================
-
-; range 10000 crea una sequenza da 0 a 999
-; filter torna solo i valori che soddisfano la condizione divisible-by ecc ecc
-; reduce somma i primi 2 valori, poi il risultato con il terzo, ecc ecc
-(defn problem001 [] 
-  (reduce + (filter divisible-by-3-or-5? (range 1000))))
 
 
-; answer = 233168
-(deftest test-problem001
-  (is (= 233168  (problem001) )))
 
 
 ; ============================ PROBLEMA 002 ============================
@@ -249,3 +233,6 @@
 ;
 ;ANSWER: 2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19 = 232 792 560
 ;
+
+
+

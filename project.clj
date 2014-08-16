@@ -1,13 +1,9 @@
-
-(defproject projecteuler "1.0.0-SNAPSHOT"
-  :description "Project euler"
-  :dependencies [
-  					[org.clojure/clojure "1.4.0"]
-                                                               
-                ]
-  :dev-dependencies 
-  			[
-		     	[swank-clojure "1.3.2"]
-		    ]
-  
-  )
+(defproject my-stuff "0.1.0-SNAPSHOT"
+  :description "project euler"
+  :url "http://example.com/FIXME"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :dependencies [[org.clojure/clojure "1.6.0"]]
+  :main ^:skip-aot eulerclj.p001
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all}})
