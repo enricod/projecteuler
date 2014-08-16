@@ -51,3 +51,7 @@
 ; 76576500
 (def res (int r))
 
+(defn -main
+  "Risolve p012"
+  [& args]
+  (println "p012 = "  res))

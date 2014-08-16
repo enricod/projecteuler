@@ -26,7 +26,7 @@
 ; What is the greatest product of four adjacent numbers in any direction
 ; (up, down, left, right, or diagonally) in the 2020 grid?
 
-(ns p011)
+(ns eulerclj.p011)
 
 (def table-str
   (str "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -89,8 +89,8 @@
 
 ; data la matrice m, torna l'elemento di coordinate x, y
 (defn get-at [m x y]
-  (nth (nth m y) x)
-  )
+  (nth (nth m y) x)  )
+
 
 
 ;(defn matrix-invert [x]

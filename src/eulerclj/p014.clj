@@ -13,7 +13,7 @@
 ; Which starting number, under one million, produces the longest chain?
 
 
-(ns p014)
+(ns eulerclj.p014)
 
 (defn transform [n]
   (if (even? n) 
