@@ -1,4 +1,4 @@
-(ns p009)
+
 
 ;
 ; A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
@@ -7,6 +7,11 @@
 ; There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 ; Find the product abc.
 
+
+(ns eulerclj.p009
+	(:use eulerclj.euler)
+  (:use eulerclj.sieve))
+
 (def r2 (range 1 500))
 
 (defn mysquare [n]
@@ -14,15 +19,15 @@
 
 (def my-seq
   (for [x r2 y r2 z r2
-                  :when (and
-                          (= 1000 (+ x y z))
-                          (and
-                             (and
-                               (<= x y) (<= y z))
-                             (=  (+ (mysquare x) (mysquare y))
-                             (mysquare z)))
-                          )]
-              [x y z] ))
+                      :when (and
+                              (= 1000 (+ x y z))
+                              (and
+                                 (and
+                                   (<= x y) (<= y z))
+                                 (=  (+ (mysquare x) (mysquare y))
+                                 (mysquare z)))
+                              )]
+                [x y z] ))
 
 
 
@@ -31,3 +36,8 @@
 
 ; result = 31875000
 (def res (reduce *  my-seq2 ))
+
+(defn -main
+  "Risolve p009"
+  [& args]
+  (println "p009 ="  res))

@@ -50,7 +50,7 @@
         (cons n (lazy-seq-fibo b n))))))
 
 
-;; 
+;;
 ;; f1 = 1
 ;; f2 = 2 + f1
 ;; fn = n + fn-1
@@ -65,7 +65,7 @@
         (cons n (lazy-seq-triangle n (inc b) ))))))
 
 
-(defn factors [x] 
+(defn factors [x]
   (filter #(== 0 (mod x %)) (sieve x )))
 
 
@@ -87,124 +87,8 @@
 
 
 
-; ============================ PROBLEMA 003 ============================
-
-; The prime factors of 13195 are 5, 7, 13 and 29.
-; What is the largest prime factor of the number 600851475143 ?
-; answer = 6857
-; numeri primi < n
 
 
-(def prob003n 600851475143)
-
-; sequenza numeri primi in ordine decrescente
-(def primes-seq 
-     (reverse (sieve (Math/sqrt prob003n))))
-
-; tra questi troviamo i fattori del numero n
-(def myfactors 
-     (filter #(== 0 (mod prob003n %)) primes-seq ))
-
-; il primo e' il valore che cerchiamo
-(defn problem003 [] (first myfactors))
-
-
-(deftest test-problem003-1
-  (is (= 6857 (problem003))))
-
-
-
-; ============================ PROBLEMA 004 ============================
-
-
-; inverte una stringa
-(defn reverse-string [s]
-  (apply str (reverse s)))
-
-; true se il numero e' palindromo
-(defn palindrome? [n]
-  (= (str n) (reverse-string (str n))))
-
-(def p004-range (range 999 100 -1))
-
-; questo mi da tutte le moliplicazioni x*y
-; sicuramente migliorabile!
-(def v-coll
-  (sort (for [x p004-range y p004-range :while (<= x y)] (* x y))))
-
-(defn problem004 [] 
-  (last (filter #(palindrome? %) v-coll)))
-
-
-(deftest test-problem004
-  (is (= 906609 (problem004))))
-
-
-; ============================ PROBLEM 005 ============================
-
-
-; 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
-
-(def mas2 (reduce * (range 2 21)))
-
-;(def p005r2
-;  (lazy-seq (range 20 mas2)))
-
-(defn divisibile [n m]
-  (= 0 (mod n m)))
-
-(defn divisible-by-all? [n]
-  "ci deve essere un modo migliore :) "
-  (and (divisibile n 20)
-    (and (divisibile n 19)
-      (and (divisibile n 18)
-        (and (divisibile n 17)
-          (and (divisibile n 16)
-            (and (divisibile n 15)
-              (and (divisibile n 14)
-                (and (divisibile n 13)
-                  (and (divisibile n 12)
-                    (and (divisibile n 11)
-                      (and (divisibile n 10)
-                        (and (divisibile n 9)
-                          (and (divisibile n 8)
-                            (and (divisibile n 7)
-                              (and (divisibile n 6)
-                                (and (divisibile n 5)
-                                  (and (divisibile n 4)
-                                    (and (divisibile n 3)
-                                      (and (divisibile n 2)
-                                        ))))))))))))))))))))
-
-
-(defn not-divisible-by-all? [n]
-  (not (divisible-by-all? n)))
-
-(defn problem005 []
-   (first (drop-while not-divisible-by-all? (range 20 mas2 20))))
-
-(deftest test-problem005
-  (is (= 232792560 (problem005))))
-
-;
-; This does not require programming at all.
-; Compute the prime factorization of each number from 1 to 20,
-; and multiply the greatest power of each prime together:
-;
-;20 = 2^2 * 5
-;19 = 19
-;18 = 2 * 3^2
-;17 = 17
-;16 = 2^4
-;15 = 3 * 5
-;14 = 2 * 7
-;13 = 13
-;11 = 11
-;
-;All others are included in the previous numbers.
-;
-;ANSWER: 2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19 = 232 792 560
-;
 
 
 

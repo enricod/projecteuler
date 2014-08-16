@@ -1,5 +1,6 @@
 (ns eulerclj.p002
   (:use eulerclj.euler)
+
   (:use clojure.test))
 
 ; ============================ PROBLEMA 002 ============================
@@ -23,27 +24,29 @@
   (take-while less-than-four-million? (lazy-seq-fibo)))))
 
 ; con closure
-(defn problem002-sol2 []
+(defn p002B []
   (reduce + 
     (filter even? 
       (take-while (fn [n] (< n 4000000)) (lazy-seq-fibo )))))
 
 ; con closure e notazione breve
-(defn problem002-sol3 []
+(defn p002C []
   (reduce + (filter even? (take-while #(< % 4000000) (lazy-seq-fibo )))))
 
 
 (deftest test-p002A
   (is (= 4613732 (p002A))))
 
-(deftest test-p002-2
-  (is (= 4613732 (problem002-sol2))))
+(deftest test-p002B
+  (is (= 4613732 (p002B))))
 
-(deftest test-p002-3
-  (is (= 4613732 (problem002-sol3))))
+(deftest test-p002C
+  (is (= 4613732 (p002C))))
   
 (defn -main
     "Risolve p002"
     [& args]
-    (println "p002 ="  (p002A))
+    (println "p002 A ="  (p002A))
+    (println "p002 B ="  (p002B))
+    (println "p002 C ="  (p002C))
   )

@@ -4,8 +4,14 @@
 ; answer: 142913828922
 
 (ns eulerclj.p010
-  (:use eulerclj.euler))
+  (:use eulerclj.euler)
+    (:use eulerclj.sieve))
 
 (def myprimes (sieve 2000000))
 
 (def res (reduce + myprimes ))
+
+(defn -main
+  "Risolve p010"
+  [& args]
+  (println "p010 ="  res))

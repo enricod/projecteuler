@@ -11,7 +11,7 @@
 ; Find the difference between the sum of the squares of the first one
 ; hundred natural numbers and the square of the sum.
 
-(ns p006)
+(ns eulerclj.p006)
 
 (defn sum-of-squares [r]
   (reduce +
@@ -21,13 +21,19 @@
   (Math/pow
     (reduce + r) 2))
 
-(defn get-res [r]
+(defn p006 [r]
 ; {:test (fn [] (is (= (range 1 11) 2640)))}
   (int (- (square-of-sum r)
     (sum-of-squares r))))
 
 ; result = 25164150
-(def res (get-res (range 1 101)))
+
 
 ;(println (result (range 1 11)))
 ;(println (result (range 1 101)))
+
+(defn -main
+  "Risolve p006"
+  [& args]
+  (println "p006 ="  (p006 (range 1 101)))
+)
