@@ -83,34 +83,6 @@
 
 
 
-; ============================ PROBLEMA 002 ============================
-
-(defn less-than-four-million? [n]
-  (< n 4000000))
-
-(defn problem002-sol1 []
-  (reduce + (filter even? 
-  (take-while less-than-four-million? (lazy-seq-fibo)))))
-
-; con closure
-(defn problem002-sol2 []
-  (reduce + 
-    (filter even? 
-      (take-while (fn [n] (< n 4000000)) (lazy-seq-fibo )))))
-
-; con closure e notazione breve
-(defn problem002-sol3 []
-  (reduce + (filter even? (take-while #(< % 4000000) (lazy-seq-fibo )))))
-
-
-(deftest test-problem002-sol1
-  (is (= 4613732 (problem002-sol1))))
-
-(deftest test-p002-2
-  (is (= 4613732 (problem002-sol2))))
-
-(deftest test-p002-3
-  (is (= 4613732 (problem002-sol3))))
 
 
 
