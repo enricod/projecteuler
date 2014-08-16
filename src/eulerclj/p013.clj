@@ -1,6 +1,7 @@
 
 (ns eulerclj.p013
-  (:use eulerclj.euler))
+  (:use eulerclj.euler)
+  (:use eulerclj.sieve))
 
 (def big-num-str
     (str "37107287533902102798797998220837590246510135740250
@@ -105,11 +106,16 @@
 53503534226472524250874054075591789781264330331690"))
 
 
-(def str-coll (. p013/big-num-str split "\n"))
+(def str-coll (. big-num-str split "\n"))
 
 (def v-coll (map #(BigInteger. (str %)) str-coll))
 
 (def totale (reduce + v-coll))
 
 ; 5537376230
-(def res (. (str p013/totale) substring 0 10))
+(def res (. (str totale) substring 0 10))
+
+(defn -main
+  "Risolve p013"
+  [& args]
+  (println "p013 ="  res))

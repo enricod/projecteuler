@@ -5,7 +5,7 @@
 
 (ns eulerclj.p010
   (:use eulerclj.euler)
-    (:use eulerclj.sieve))
+  (:use eulerclj.sieve))
 
 (def myprimes (sieve 2000000))
 
