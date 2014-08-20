@@ -50,53 +50,142 @@
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"))
 
-; sequenza di stringhe
-(def rows-str (list* (.split table-str "\n")))
+(def rows-str 
+  ; sequenza di stringhe
+  (list* (.split table-str "\n")))
 
-; spezziamo ogni stringa in sottostringhe
-; sequenza di sequenze di stringhe
 (def seq2-str
+  ; spezziamo ogni stringa in sottostringhe - sequenza di sequenze di stringhe
     (map #(list* %)
       (map #(.split % " ") rows-str)
   ))
 
-; converte una seq di stringhe in sequenza di interi
-(defn seq-str-to-seq-int [x] (map #(Integer. %) x))
+(defn seq-str-to-seq-int [x] 
+	; converte una seq di stringhe in sequenza di interi
+  (map #(Integer. %) x))
 
-; finalmente abbiamo la seq di seq di interi
-(def seq2-int
-  (map #(seq-str-to-seq-int %) seq2-str)
-  )
+(def matrice
+	" finalmente abbiamo la seq di seq di interi "
+  (map #(seq-str-to-seq-int %) seq2-str))
 
-; max in orizzontale per ogni riga
+
 (defn row-max1 [x]
+	; max in orizzontale per ogni riga
   (apply max (map #(reduce * %)
         (for [idx (range (count x))]
             (take 4 (drop idx x))))))
 
-; data una riga, estrae i gruppi di 4 interi
 (defn row-groups [x]
+	; data una riga, estrae i gruppi di 4 interi
   (for [idx (range (count x))]
             (take 4 (drop idx x))))
 
-; calcola il valore massimo delle moltiplicazioni in orizzontale
-(defn max-hor [x]
-  (apply max
-    (map #(row-max1 %) seq2-int ) 
+
+
+
+
+
+(defn matrix-get-at 
+  "data la matrice m, torna l'elemento di coordinate x, y"  
+  [m x y]
+  (nth (nth m y) x))
+
+(defn matrix-invert 
+  " inverte la matrice m"
+  [m] 
+  )
+
+(defn matrix-diagonal 
+  "torna diagonale della matrice m"
+  [m] 
+  (map-indexed (fn [idx itm] (nth itm idx)) m)  )
+
+(defn matrix-row-nth 
+  "torna la riga n della matrice m"
+  [m n]
+  (nth m n))
+
+(defn matrix-col-nth 
+  "torna la colonna n della matrice m"
+  [m n] 
+  (map #(nth % n) m))
+
+(defn prodotto-seq 
+  "prodotto elementi di una seq"
+  [s]
+  (reduce * s))
+
+(defn matrice-prodotti-nr-adiacenti 
+  "data una matrice m, torna una sequenza con seq di prodotto di numeri delle righe, 
+   seq di prodotto di numeri delle colonne e  diagonale"
+  [m]
+  (list 
+    (map-indexed 
+      (fn [idx itm] (prodotto-seq (matrix-row-nth m idx)) ) 
+      m)
+    (map-indexed 
+      (fn [idx itm] (prodotto-seq (matrix-col-nth m idx))) 
+      m)
+    (prodotto-seq (matrix-diagonal m ))
     ))
+  
+(defn matrice-max-prodotti 
+  [m]
+  (let [ prodotti (matrice-prodotti-nr-adiacenti m)
+        l1 (first prodotti)
+        l2 (second prodotti) ]
+    (max (apply max l1) (apply max l2) (nth prodotti 2 ))))
+
+(defn- togli-prima-colonna
+  "data matrice m, torna una nuova matrice senza la 1a colonna"
+  [m]
+  (map #(rest %) m))
+
+(defn matrice-da-prime-colonne
+  "data matrice m, torna una nuova matrice fatta dalle prime n colonne"
+  [m n]
+  (map #(take n %) m))
+
+(defn num-colonne 
+  [m]
+  (count (first m)))
+
+(defn- dividi-matrice-in-striscie
+  "data una matrice m di dimensione axb, torna x sotto-matrici di dimensione nxb"
+  ([m n]
+    (dividi-matrice-in-striscie m n [] )   )
+  ([m n res]
+    (if (<= (count m) n)
+      (conj res m)
+      (dividi-matrice-in-striscie (rest m) n (conj res (take n m))))))
+
+(defn suddividi-striscia-in-matrici-quadrate
+  ([m n]
+    (suddividi-striscia-in-matrici-quadrate m n [] ))
+  ([m n res]
+    (if (<= (num-colonne m) n) 
+      (conj res m)
+      (suddividi-striscia-in-matrici-quadrate (togli-prima-colonna m ) n  (conj res  (matrice-da-prime-colonne m n ) )))))
 
 
+(defn elenco-sottomatrici
+  "divide la matrice m in sottomatrici quadrate di dimensione n"
+  [m n]
+    (reduce concat 
+            (map #(suddividi-striscia-in-matrici-quadrate % n) 
+                 (dividi-matrice-in-striscie matrice n))))
+    
 
-; data la matrice m, torna l'elemento di coordinate x, y
-(defn get-at [m x y]
-  (nth (nth m y) x)  )
-
-
+(defn res1
+  [m n]
+  (apply max 
+         (map #(matrice-max-prodotti %) (elenco-sottomatrici m n))))
 
 ;(defn matrix-invert [x]
 ;  (let return (repeat ))
 ;  (for [x (range 0 (count (first seq2-int) )) y (range 0 (count (first seq2-int)))]
 ;    (x y)
 ;  ))
+
 
 

@@ -45,7 +45,7 @@
     (concat [0 1] (lazy-seq-fibo 0 1)))
   ; la seconda chiama se stessa con i parametri (a+b) b in modo lazy
   ([a b]
-    (let [n (+ a b)]
+    (let [n (bigint (+ a b))]
       (lazy-seq
         (cons n (lazy-seq-fibo b n))))))
 
@@ -54,14 +54,22 @@
 ;; f1 = 1
 ;; f2 = 2 + f1
 ;; fn = n + fn-1
-;; 1 2 3 4  5  6  7
-;; 1 3 6 10 15 21 28
+;;
+;; 1 1
+;; 2 3
+;; 3 6
+;; 4 10
+;; 5 15
+;; 6 21
+;; 7 28
+
 (defn lazy-seq-triangle
   ([]
     (concat [1 3] (lazy-seq-triangle 3 3)))
   ([a b]
-    (let [n (double (+ a b))]
+    (let [n (bigint (+ a b))]
       (lazy-seq
+       ; cons(x s) : Returns a new seq where x is the first element and seq is the rest.
         (cons n (lazy-seq-triangle n (inc b) ))))))
 
 

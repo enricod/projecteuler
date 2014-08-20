@@ -36,8 +36,8 @@
 ; 3 e 100
 ; ecc ecc 
 (defn divisori-count [x]
-  (let [rq (int (Math/sqrt x))]
-    (let [s1 (filter #(== 0 (mod x %)) (range 1 rq))]
+  (let [sqr (int (Math/sqrt x))]
+    (let [s1 (filter #(== 0 (mod x %)) (range 1 sqr))]
       (let [res  (* 2 (count s1))]
         (if (== x (* rq rq))
           (inc res)
