@@ -27,4 +27,5 @@
 (defn -main
   "Risolve p001"
   [& args]
-  (println "p001 ="  (p001)))
+  (println "Solving problem 001")
+  (println "p001 = "  (p001)))
