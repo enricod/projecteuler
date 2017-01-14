@@ -16,37 +16,24 @@
 ;  (lazy-seq (range 20 mas2)))
 
 (defn divisibile [n m]
+  " true se n è divisibile per m"
   (= 0 (mod n m)))
 
-(defn divisible-by-all? [n]
-  "ci deve essere un modo migliore :) "
-  (and (divisibile n 20)
-    (and (divisibile n 19)
-      (and (divisibile n 18)
-        (and (divisibile n 17)
-          (and (divisibile n 16)
-            (and (divisibile n 15)
-              (and (divisibile n 14)
-                (and (divisibile n 13)
-                  (and (divisibile n 12)
-                    (and (divisibile n 11)
-                      (and (divisibile n 10)
-                        (and (divisibile n 9)
-                          (and (divisibile n 8)
-                            (and (divisibile n 7)
-                              (and (divisibile n 6)
-                                (and (divisibile n 5)
-                                  (and (divisibile n 4)
-                                    (and (divisibile n 3)
-                                      (and (divisibile n 2)
-                                        ))))))))))))))))))))
+
+(defn divisible-by-all? [n, m]
+  "true se n è divisibile per tutti i valori da 1 a m "
+  (every? true? (map #(divisibile n %) (range 2 m)) ))                                       
 
 
-(defn not-divisible-by-all? [n]
-  (not (divisible-by-all? n)))
+(defn not-divisible-by-all? [n m]
+  (not (divisible-by-all? n m)))
 
 (defn p005 []
-   (first (drop-while not-divisible-by-all? (range 20 mas2 20))))
+   (first (drop-while #(not-divisible-by-all? % 20) (range 20 mas2 20)  )))
+
+(deftest test-divisible-by-all 
+  (is (= true (divisible-by-all? 232792560 20))) 
+  (is (= true (divisible-by-all? 2520 10)))   )
 
 (deftest test-problem005
   (is (= 232792560 (p005))))

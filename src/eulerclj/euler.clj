@@ -8,14 +8,13 @@
 ;; (clojure.test/run-all-tests #"eulerclj.euler")
 
 
-
 (defn my-sieve [n]
   (let [n (int n)]
     "Returns a list of all primes from 2 to n"
     (let [root (int (Math/round (Math/floor (Math/sqrt n))))]
       (loop [i (int 3)
-             a (int-array n)
-             result (list 2)]
+             a (int-array n)  ; crea un array di interi lungo n (tutti 0)
+             result (list 2)] ; crea una lista contente il 2 
         (if (>= i n)
           (reverse result)
           (recur (+ i (int 2))

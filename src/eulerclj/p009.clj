@@ -22,10 +22,10 @@
                       :when (and
                               (= 1000 (+ x y z))
                               (and
-                                 (and
-                                   (<= x y) (<= y z))
-                                 (=  (+ (mysquare x) (mysquare y))
-                                 (mysquare z)))
+                                 (and (<= x y) (<= y z))
+                                 (=  
+                                  (+ (mysquare x) (mysquare y))
+                                  (mysquare z)))
                               )]
                 [x y z] ))
 
