@@ -1,2 +1,5 @@
 # projecteuler
-Project euler in clojure
+An exercise in clojure solvin project Euler problems
+
+https://projecteuler.net
+
