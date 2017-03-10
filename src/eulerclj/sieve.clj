@@ -1,5 +1,8 @@
 (ns eulerclj.sieve)
 
+(def a1 (int-array 5))
+
+
 (defn sieve
   "Returns a list of all primes from 2 to n"
   [n]
@@ -40,6 +43,8 @@
     (apply concat (vals (reduce next-sieve {} (range 2 max))))))
 
 
+
+
 (defn primes2 [max]
   (let [enqueue (fn [sieve n factor]
                   (let [m (+ n factor)]
@@ -68,6 +73,7 @@
                          (enqueue candidate factor))
                        (enqueue sieve candidate candidate)))]
     (cons 2 (vals (reduce next-sieve {} (range 3 max 2))))))
+
 
 
 (defn lazy-primes3 []

@@ -22,7 +22,7 @@
 
 (defn divisible-by-all? [n, m]
   "true se n è divisibile per tutti i valori da 1 a m "
-  (every? true? (map #(divisibile n %) (range 2 m)) ))                                       
+  (every? true? (map #(divisibile n %) (range 2 m)) ))
 
 
 (defn not-divisible-by-all? [n m]
@@ -31,12 +31,15 @@
 (defn p005 []
    (first (drop-while #(not-divisible-by-all? % 20) (range 20 mas2 20)  )))
 
-(deftest test-divisible-by-all 
-  (is (= true (divisible-by-all? 232792560 20))) 
+(deftest test-divisible-by-all
+  (is (= true (divisible-by-all? 232792560 20)))
   (is (= true (divisible-by-all? 2520 10)))   )
 
 (deftest test-problem005
   (is (= 232792560 (p005))))
+
+(p005)
+
 
 ;
 ; This does not require programming at all.
