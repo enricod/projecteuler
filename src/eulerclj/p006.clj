@@ -35,5 +35,4 @@
 (defn -main
   "Risolve p006"
   [& args]
-  (println "p006 ="  (p006 (range 1 101)))
-)
+  (println "p006 ="  (p006 (range 1 101))))

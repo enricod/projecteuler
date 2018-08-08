@@ -1,6 +1,5 @@
 (ns eulerclj.p002
   (:use eulerclj.euler)
-
   (:use clojure.test))
 
 ; ============================ PROBLEMA 002 ============================
@@ -48,5 +47,4 @@
     [& args]
     (println "p002 A ="  (p002A))
     (println "p002 B ="  (p002B))
-    (println "p002 C ="  (p002C))
-  )
+    (println "p002 C ="  (p002C)))

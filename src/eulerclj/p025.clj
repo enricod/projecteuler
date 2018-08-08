@@ -1,5 +1,6 @@
 (ns eulerclj.p025
-  (:use eulerclj.euler))
+  (:use eulerclj.euler)
+  (:use clojure.test))
 
 (defn has-less-digits? [n]
   (< (. (str n) length) 1000))
@@ -11,5 +12,8 @@
 (def l (take 5000 (lazy-seq-fibo)))
 
 ; result = 4782
-(def res (count (take-while #(has-less-digits? %) l) )   ) 
+(def p025res (count (take-while #(has-less-digits? %) l) )   ) 
+
+(deftest test-p025
+  (is (= 4782 p025res)))
 

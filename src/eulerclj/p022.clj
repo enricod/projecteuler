@@ -1,10 +1,10 @@
-;
-
 (ns eulerclj.p022
-  (:require clojure.string :use clojure.test))
+  
+  (:use eulerclj.euler)
+  (:use clojure.test))
 
 ; legge il contenuto del file
-(def text (slurp "names.txt"))
+(def text (slurp "p022_names.txt"))
 
 ; seq ordinata dei nomi, dopo aver tolto gli apici
 ; 
@@ -38,6 +38,6 @@
 
 
 ; test sul risultato finale
-(deftest test-result 
+(deftest test-p022 
          (is (= 871198282 (mult-and-sum (indexed names-as-sum)))))
 

@@ -1,7 +1,7 @@
 (ns eulerclj.p067
   (:require [clojure.string :as str])
-  (:import (java.io BufferedReader FileReader)))
-
+  (:import (java.io BufferedReader FileReader))
+  (:use clojure.test))
 
 
 ; By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
@@ -42,6 +42,8 @@
                [2 4 6]
                [8 5 9 3] ))
 
+
+
 (def t2 (list [75]
               [95 64]
               [17 47 82]
@@ -64,10 +66,6 @@
   (into [] (concat v1 v2)))
 
 ; (apply max (nth triang 2))
-
-
-
-
 
 
 ;; a1
@@ -107,13 +105,10 @@
 
 
 
-
 ;(somma-righe (nth t2 0) (nth t2 1))
 ;(somma-righe [170 39] (nth t2 2))
 ;(somma-righe [187 217 86 121] (nth t2 3))
 ;(somma-righe [205 222 252 304 173 96 131] (nth t2 4))
-
-
 
 
 (defn p067 [triang]
@@ -132,14 +127,19 @@
   (when-not (= "0" line)
     (into [] (map #(Integer/parseInt %) (str/split line #" ")))))
 
+
+
 (defn process-file [file-name]
     (with-open [rdr (BufferedReader. (FileReader. file-name))]
       (remove empty? (doall (map process-line (line-seq rdr)))) ))
 
 
+(deftest test-p067
+  (is (= 7273 (p067 (process-file "p067.txt")))))
 
 ; (p067 (process-file "p067.txt"))
 (defn -main
   "Risolve p067"
   [& args]
   (println "p067 ="  (p067 (process-file "p067.txt")) ))
+

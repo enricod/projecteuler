@@ -1,6 +1,6 @@
-
-
-
+(ns eulerclj.p008
+	(:use eulerclj.euler)
+  (:use eulerclj.sieve))
 
 
 ;The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
@@ -30,9 +30,6 @@
 ; What is the value of this product?
 
 
-(ns eulerclj.p008
-	(:use eulerclj.euler)
-  (:use eulerclj.sieve))
 
 (def big-num-str
     (str "73167176531330624919225119674426574742355349194934
